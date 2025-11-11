@@ -1,11 +1,14 @@
-%Name: ASEN-3801 Lab 4 PlotAircaftSim.m
+%Name: ASEN-3801 Lab 5 PlotAircaftSim.m
 %Date: 10/14/2025
 %Authors: Alex Godbout
 %Inputs:
 %    length 𝑛 vector which holds the time corresponding to the 𝑛𝑛th set of variables, the 12 x 𝑛 array of
 %    aircraft states, the 4 by 𝑛𝑛 array of control inputs [𝑍c, 𝐿𝑐, Mc, Nc]T, the 6 x 1 vector of figure numbers to
 %    plot over, and the string col which indicates the plotting option used for every plot,
-%    eg. col = 'b-'.
+%    eg. col = 'b-'. Additionally this function contains nameSuffix, which
+%    will identify which lab task the plot is associated with.  dispName
+%    allows us to set the display name of the plot, this appears in
+%    the legend
 %Outputs:
 %    The function should plot 6 figures. There should be four figures each with three subplots for the
 %    inertial position, Euler angles, inertial velocity in body frame, and angular velocity, respectively.
