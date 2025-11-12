@@ -25,8 +25,8 @@ x_0(:,2) = [0;0;-1800;0;0.02780;0;20.99;0;0.5837;0;0;0]; %2.2
 x_0(:,3) = [0;0;-1800;deg2rad(15);deg2rad(-12);deg2rad(270);19;3;-2;deg2rad(0.08);deg2rad(-.2);0]; %2.3
 u_0 = zeros(4,3);
 u_0(:,1) = [0;0;0;0]; %2.1 Deflections
-u_0(:,2) = [0.1079;0;0;0.3182]; %2.2 Deflections
-u_0(:,3) = [deg2rad(5);deg2rad(2);deg2rad(-13);0]; %2.3 Deflections
+u_0(:,2) = [00.1079;0;0;0]; %2.2 Deflections
+u_0(:,3) = [0;0;0;0]; %2.3 Deflections
 
 %Set Figure Label Parameters
 figureSuffix = ["2.1","2.2","2.3"];

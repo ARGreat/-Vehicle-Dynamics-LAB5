@@ -3,21 +3,22 @@
 %Purpose: Implement the Non-Linear Aircraft Equations of Motion
 %Returns: The derivative of the statevector at the given initial state
 function xdot = AircraftEOM(time, aircraft_state, aircraft_surfaces, wind_inertial,aircraft_parameters)
-    
-    % var = [x y z phi theta psi uE vE wE p q r]^T
+    g = aircraft_parameters.g;
+    m = aircraft_parameters.m;
+    % aircraft_state = [x y z phi theta psi uE vE wE p q r]^T
     % I   = [Ix Iy Iz]^T
     % motor_forces = [F1 F2 F3 F4]^T  (N)
-    % Returns var_dot with the same ordering.
+    % Returns aircraft_state_dot with the same ordering.
     
     % angles, translational velocities, body rates
-    phi   = var(4);    theta = var(5);   psi  = var(6);
-    uE    = var(7);    vE    = var(8);   wE   = var(9);
-    p = var(10); q = var(11); r = var(12);
+    phi   = aircraft_state(4);    theta = aircraft_state(5);   psi  = aircraft_state(6);
+    uE    = aircraft_state(7);    vE    = aircraft_state(8);   wE   = aircraft_state(9);
+    p = aircraft_state(10); q = aircraft_state(11); r = aircraft_state(12);
     
     v_inertial = [uE; vE; wE];
     omega_b = [p; q; r];
 
-
+    density = stdatmo(-aircraft_state(3));
 
     % Trig
     cphi = cos(phi);   sphi = sin(phi);
@@ -67,13 +68,13 @@ function xdot = AircraftEOM(time, aircraft_state, aircraft_surfaces, wind_inerti
 
 
     % Rotational dynamics
-    p_dot = G1*P*q - G2*q*r + G3*aero_moments(1)+G4*aero_moments(3);
+    p_dot = G1*p*q - G2*q*r + G3*aero_moments(1)+G4*aero_moments(3);
     q_dot = G5*p*r - G6*(p^2-r^2) + aero_moments(2)/aircraft_parameters.Iy;
-    r_dot = G7*P*q - G1*q*r + G4*aero_moments(1)+G8*aero_moments(3);
+    r_dot = G7*p*q - G1*q*r + G4*aero_moments(1)+G8*aero_moments(3);
     eulerRate_dot = [p_dot; q_dot; r_dot];
     
     % Pack
-    var_dot = [inertialPos_dot;
+    xdot = [inertialPos_dot;
                eulerAng_dot;
                inertialVel_dot;
                eulerRate_dot];
