@@ -28,15 +28,9 @@ p = aircraft_state(10,1);
 q = aircraft_state(11,1);
 r = aircraft_state(12,1);
 
-if(t > 0 && t <= doublet_time)
-    de = aircraft_surfaces(1,1) + doublet_size;
-elseif(t > doublet_time && t <= doublet_time)
-    de = aircraft_surfaces(1,1) - doublet_size;
-else
-    de = aircraft_surfaces(1,1);
-end
+aircraft_surfaces = AircraftSurfacesPart3(t,aircraft_surfaces,doublet_time,doublet_size);
 
-
+de = aircraft_surfaces(1,1);
 da = aircraft_surfaces(2,1);
 dr = aircraft_surfaces(3,1);
 dt = aircraft_surfaces(4,1);

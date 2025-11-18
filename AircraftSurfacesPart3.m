@@ -4,7 +4,7 @@ function aircraft_surfaces = AircraftSurfacesPart3(t,aircraft_surfaces,doublet_t
 de = repmat(aircraft_surfaces,1,length(t));
     filter = t >= 0 & t < doublet_time;
     de(1,filter) = aircraft_surfaces(1) + doublet_size;
-    de(1,t > doublet_time & t <= doublet_time) = aircraft_surfaces(1) - doublet_size;
+    de(1,t > doublet_time & t <= 2*doublet_time) = aircraft_surfaces(1) - doublet_size;
 
     %{
     if(t > 0 && t <= doublet_time)
@@ -16,5 +16,5 @@ de = repmat(aircraft_surfaces,1,length(t));
     end
     %}
 
-    aircraft_surfaces = [de,aircraft_surfaces(1,2),aircraft_surfaces(1,3)];
+    aircraft_surfaces = de;
 end
