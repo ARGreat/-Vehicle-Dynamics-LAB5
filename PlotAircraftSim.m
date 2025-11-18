@@ -136,8 +136,8 @@ if(fig(6) >=1)
     set(gcf,'Name',nameSuffix+" 3D Pos",'NumberTitle','off');
     view(3);
     plot3(aircraft_state_array(:,1),aircraft_state_array(:,2),-aircraft_state_array(:,3), col(6),DisplayName=dispName); hold on;
-    plot3(aircraft_state_array(1,1),aircraft_state_array(1,2),-aircraft_state_array(1,3),'go', 'MarkerFaceColor', 'g'); hold on;
-    plot3(aircraft_state_array(end,1),aircraft_state_array(end,2),-aircraft_state_array(end,3),'ro', 'MarkerFaceColor', 'r'); hold on;
+    plot3(aircraft_state_array(1,1),aircraft_state_array(1,2),-aircraft_state_array(1,3),'go', 'MarkerFaceColor', 'g',DisplayName="Start"); hold on;
+    plot3(aircraft_state_array(end,1),aircraft_state_array(end,2),-aircraft_state_array(end,3),'ro', 'MarkerFaceColor', 'r',DisplayName="Stop"); hold on;
     xlabel("North (m)");
     ylabel("East (m)");
     zlabel("Up (m)");
@@ -152,4 +152,3 @@ if(fig(6) >=1)
     hold off;
 end
 end
-

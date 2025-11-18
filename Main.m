@@ -10,7 +10,7 @@ clear; clc; close all;
 
 %Toggles
 saveFigures = 0;
-run_task2 = 1;
+run_task2 = 0;
 run_task3 = 1;
 
 ttwistor

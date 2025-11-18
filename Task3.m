@@ -27,19 +27,20 @@ dispName= ["Non-Linearized Aircraft","Non-Linearized Aircraft"];
 
 %Run ode45 and plot
 aircraft_state_0 = x_0;
-aircraft_surfaces = u_0;
+
 wind_inertial = [0;0;0];
 
 t_run = [3,100];
 
 for(i=1:2)
+    aircraft_surfaces = u_0;
     tspan = [0, t_run(i)]; % from 0 to 100 seconds
     odefun = @(time,aircraft_state) AircraftEOMDoublet(time, aircraft_state, aircraft_surfaces, doublet_size,...
     doublet_time, wind_inertial,aircraft_parameters);
     [time, aircraft_state_array] = ode45(odefun, tspan, aircraft_state_0);
     %Plot
     n = length(time);
-    aircraft_surfaces = repmat(aircraft_surfaces,1,n);
+    aircraft_surfaces = AircraftSurfacesPart3(time,aircraft_surfaces,doublet_time,doublet_size);
     fig = [3001;3002;3003;3004;3005;3006] + 10*i;
     col = ['b','b','b','b','b','b'];
     PlotAircraftSim(time, aircraft_state_array, aircraft_surfaces,fig, col,figureSuffix(i),dispName(i))
